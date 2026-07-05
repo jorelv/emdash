@@ -1,7 +1,7 @@
 # Jorel's Blog — Complete Site Context
 # Generated dynamically. All published posts and pages.
 # Total articles: 8
-# Last updated: 2026-07-05T13:08:10.085Z
+# Last updated: 2026-07-05T15:05:41.716Z
 
 ---
 # TITLE: About
@@ -204,32 +204,63 @@ But even when they do, the baseline rule remains: **you shouldn't trust an LLM t
 ---
 # TITLE: The Pirate Author and the AI Coworker: Hugh Howey's Frictionless Future
 ## Date: 2026-02-11
-## Excerpt: Years before ChatGPT, sci-fi author Hugh Howey (Silo/Wool) predicted the rise of the AI coworker, welcoming it as a creative augment rather than a threat. By embracing piracy and pricing for accessibility, Howey proved that friction is the true enemy of progress. Here is what technologists can learn from a writer who valued output over process.
+## Excerpt: Years before ChatGPT, sci-fi author Hugh Howey (Silo/Wool) predicted the rise of the AI coworker, welcoming it as a creative augment rather than a threat. By embracing piracy and pricing for accessibility, Howey proved that friction is the true enemy of progress. Here is what technologists can learn from a writer who valued output over process.  
 
-One of the best AI predictions didn’t come from a technologist. It came from an author who welcomed piracy.
+One of the most compelling predictions about AI didn't come from a technologist. It came from an author who once put a **"Pro-Piracy"** button on his website.
 
-Years before ChatGPT, sci-fi author **Hugh Howey** (_Silo_/_Wool_) predicted an AI coworker. But he didn't write this in his novels; he wrote it in a blog post about his own future.
+Years before ChatGPT, science fiction author **Hugh Howey** (_Silo_/_Wool_) imagined sitting down with a writing partner that wasn't human. In 2016 he described a future where writers and AI would iterate together—drafting, revising, and refining ideas in ways neither could achieve alone.
 
-He wasn't world-building. He was planning.
+> One day, I will sit down with my writing program, give the barest of prompts, and the computer will spit out rough prose for me to revise... Or I will write, ask for a prompt, and get a suggestion in return. We will co-author the work. Neither of us could have written the final piece alone.
 
-He foresaw a time where he wouldn't be replaced, but augmented. He envisioned writer and machine iterating together. This perspective resonates because it rejects the binary fear/hype cycle we see in cybersecurity and tech today.
+He called it the "Centaur" stage: human and machine, collaborating.
 
-He wasn’t trying to protect the "old way" or maintain a monopoly on creativity. He was obsessed with the output, not the ego of the process.
+This wasn't a sudden change in perspective. It was the continuation of a philosophy he'd already been living for years.
 
-## Defending the Output, Not the Process
+## Optimize for the Work, Not the Workflow
 
-Instead of wasting energy defending the status quo, Howey focused on removing friction:
+Howey has consistently challenged the assumption that creators should defend every step of the traditional creative process. Instead, he asks a different question:
 
-- **He didn't fight piracy; he leveraged it.** He famously placed a "Pro-Piracy" button directly on his site, understanding that obscurity was a far bigger risk to a creator than theft.
-- **He priced for accessibility, not strategy.** He sold his work for $0.99 when that price point was considered crazy by the publishing establishment. It wasn't a calculated "pricing tier" but simply the lowest price Amazon allowed. He viewed writing as a passion to be shared, not a product to be gated.
+**What gets in the way of people creating, sharing, and enjoying great work?**
 
----
+That question shaped his publishing decisions long before AI entered the conversation.
 
-## The Frictionless Horizon
+- **He welcomed piracy instead of fearing it.** Rather than treating every unauthorized download as a lost sale, he saw obscurity as the greater threat. He believed convenience, accessibility, and goodwill were more powerful than DRM and enforcement. His goal wasn't to punish pirates—it was to make buying easier than pirating.
+- **He priced for readers, not the industry.** When publishers viewed $0.99 ebooks as reckless, Howey saw it as removing another barrier between stories and readers. The objective wasn't maximizing the price of a book; it was maximizing the reach of an idea.
+- **He embraced AI as a creative partner.** In 2016, he predicted that writers would soon collaborate with intelligent software that could generate drafts, offer suggestions, and help refine prose. The author would remain essential, but the act of writing would become more fluid, more iterative, and less constrained by the mechanics of producing a first draft.
 
-The author who put a pirate flag on his website saw the future clearly: **Friction is the enemy, not the technology.**
+These aren't separate opinions. They're expressions of the same principle.
 
-The revolution isn't the tool itself. It’s the barriers it removes from the work.
+## Friction Is the Real Competitor
+
+Howey's work suggests that the biggest obstacle to creativity isn't new technology. It's unnecessary friction.
+
+Piracy challenged the friction of distribution.
+
+Self-publishing challenged the friction of gatekeepers.
+
+Low-cost ebooks challenged the friction of pricing.
+
+AI challenges the friction of creation itself.
+
+In each case, the technology matters less than the barriers it removes.
+
+## The Lesson for AI
+
+Much of today's AI debate asks whether machines will replace people.
+
+Howey asked a different question years earlier:
+
+**What if the best work comes from reducing the distance between an idea and its realization?**
+
+That's a fundamentally different lens.
+
+Instead of defending old workflows, optimize for better outcomes.
+
+Instead of protecting every step of the process, empower more people to produce exceptional work.
+
+The revolution isn't AI.
+
+The revolution is what happens when friction stops being the limiting factor.
 
 ---
 # TITLE: Claiming Your Digital Seats: Accounts To Occupy
