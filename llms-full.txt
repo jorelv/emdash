@@ -1,7 +1,7 @@
 # Jorel's Blog — Complete Site Context
 # Generated dynamically. All published posts and pages.
 # Total articles: 8
-# Last updated: 2026-07-05T11:23:22.784Z
+# Last updated: 2026-07-05T13:08:10.085Z
 
 ---
 # TITLE: About
@@ -275,25 +275,29 @@ Freezing credit stops new accounts from being created. Filling these empty seats
 ---
 # TITLE: Starkiller: The Rise of Weaponized Remote Browsers in Phishing-as-a-Service
 ## Date: 2026-01-25
-## Excerpt: Weaponized Remote Browsers like 'Starkiller' represent a dangerous evolution in Phishing-as-a-Service (PhaaS). By spinning up headless Chromium containers for each victim, they bypass traditional device recognition and legacy OTPs. Here is how they work and how to configure phishing-resistant defenses.
+## Excerpt: Weaponized Remote Browsers like 'Starkiller' represent a dangerous evolution in Phishing-as-a-Service (PhaaS). By spinning up headless Chromium containers for each victim, they bypass traditional device recognition and legacy OTPs. Here is how they work and how to configure phishing-resistant defenses. 
 
-We are seeing a new evolution in phishing architecture. For years, the foundational technology for MFA bypass has been the Go-based reverse proxy framework (like Evilginx or _Modlishka_). Those open-source tools eventually spawned a massive, competitive commercial ecosystem of Phishing-as-a-Service (PhaaS) platforms. Kits like EvilProxy_**, **_W3LL, and _**Tycoon **_commoditized AiTM (Adversary-in-the-Middle) attacks for the masses.
+We are seeing a new evolution in phishing architecture. For years, the foundational technology for MFA bypass has been the Go-based reverse proxy framework (like Evilginx or _Modlishka_). Those open-source tools eventually spawned a massive, competitive commercial ecosystem of Phishing-as-a-Service (PhaaS) platforms. Kits like EvilProxy, W3LL, and Tycoon commoditized AiTM (Adversary-in-the-Middle) attacks for the masses.
 
-But recent intelligence on a new PhaaS platform called **"Starkiller"** (sold by a group calling itself **Jinkusu**) points to a heavier, highly automated addition to the adversary toolkit: **Weaponized Remote Browsers**.
+But recent intelligence on a new PhaaS platform called **"Starkiller"** (sold by a group calling itself **Jinkusu**) points to a heavier, highly automated addition to the adversary toolkit: **Weaponized Remote Browsers.**
 
 ## The Architecture
 
-Most modern phishing kits abandoned static HTML templates years ago in favor of reverse proxies that route traffic directly to the legitimate site. Starkiller takes a completely different architectural approach.
+Most modern phishing kits abandoned static HTML templates years ago in favor of reverse proxies that rewrite traffic at the protocol level, forwarding raw HTTP requests and responses between victim and legitimate site. Starkiller is still architecturally an AiTM reverse proxy: it forwards victim inputs to the real site and returns real responses. It just implements that proxy at a different layer.
 
-Instead of acting as a pass-through proxy forwarding web packets, **it spins up a dedicated, headless Chromium instance inside a Docker container for every victim.** You are essentially interacting with a remote browser that is navigating the real site on your behalf.
+**Instead of parsing and rewriting HTTP traffic, it spins up a dedicated, headless Chromium instance inside a Docker container for every victim**, and that browser instance itself loads and executes the real site. The victim's inputs are relayed into this container; the container's rendered output is relayed back. Functionally it's the same AiTM position as Evilginx, but the implementation is a full browser engine rather than a traffic parser.
 
-The victim sees the real site rendered perfectly. Because the actual login interaction happens server-side, it breaks standard device recognition. The Identity Provider (IdP) sees the fingerprint of the attacker's Dockerized browser, not the victim's local machine.
+That distinction matters because of what it changes on the fingerprinting side. In protocol-rewriting proxies, the victim's actual browser still executes the target site's JavaScript, so client-side fingerprinting signals (canvas rendering, WebGL, installed fonts, User-Agent) still originate from the real device unless the operator specifically strips them. In Starkiller's model, the headless Chromium container executes that JavaScript itself. Every fingerprinting signal the IdP collects, not just network-layer ones like source IP, comes from the same attacker-controlled Docker image, consistently, across every victim. That's the real step-change from Evilginx-class tooling: it doesn't just relay credentials, it interposes a browser between the victim and every client-side signal the IdP might use for device recognition.
 
 ## Automated Delivery at Scale
 
-Starkiller is built for scale and distributed like a SaaS product, automating the Docker engine status, image builds, and container scaling entirely.
+Starkiller is built for scale and distributed like a SaaS product, automating Docker engine status, image builds, and container scaling entirely.
 
-For delivery, it relies heavily on email. To hide the malicious destination, operators use a built-in URL Masker that abuses the classic `@` symbol basic authentication syntax combined with URL shorteners. To make matters worse, the kit includes an email harvesting capability that scrapes contact lists from compromised sessions to automatically build target lists for the next wave of internal phishing.
+For delivery, it relies heavily on email. To hide the malicious destination, operators use a built-in URL Masker that abuses the classic `@` symbol basic-authentication syntax combined with URL shorteners. The kit also includes an email-harvesting capability that scrapes contact lists from compromised sessions to automatically build target lists for the next wave of internal phishing.
+
+Two details worth tracking as the kit matures: recent versions (v6.2.4+) have added OTP and recovery-code capture along with bot/scanner fingerprinting to filter out automated analysis. This is an actively iterating platform, not a static tool. Marketing materials also advertise financial-fraud modules (credit card capture, crypto wallet seed theft, bank credentials) and fake browser-update payload templates, so the blast radius extends beyond corporate credential/session theft into direct financial fraud.
+
+One more point worth stating explicitly for less technical audiences: because the proxy domain is a real, attacker-registered domain, it gets its own valid TLS certificate. "Check for the padlock" or "check the certificate" guidance does nothing here: the cert is legitimate for the phishing domain, just not for the brand being impersonated.
 
 ## The Hardware Key Reality
 
@@ -305,10 +309,10 @@ What they are actually exploiting is **Legacy OTP**. If your YubiKey is configur
 
 To defend against this next wave of phishing architecture, organizations must enforce technical controls rather than relying on human detection:
 
-- **Enforce Passkeys (Enforced)**: This is the strongest architectural defense available. Because Passkeys rely on origin binding, they fundamentally break the "Remote Browser" proxy model. The attacker's container cannot trick your device into signing a request for a domain you aren't physically visiting. *Note: You must enforce Passkeys as the only method; leaving them optional leaves the door wide open.*
+- **Enforce Passkeys**: This is the strongest architectural defense available. Because Passkeys rely on origin binding, they fundamentally break the AiTM model regardless of whether the proxy is protocol-based or browser-based. The attacker's container cannot trick your device into signing a request for a domain you aren't physically visiting. _Note: You must enforce Passkeys as the only method; leaving them optional leaves the door wide open._
 - **Stop Accepting Legacy OTPs**: The flaw exists entirely within the IdP configuration. If your IdP still accepts the "Yubico OTP" text string (the `cccccc...` output) for authentication, you are phishable. If you configure your IdP to only accept FIDO2/WebAuthn, the door is locked.
 - **Device Trust**: Since the browser is actually running inside the attacker's Docker container, it lacks your managed device certificate. Enforcing mTLS/Device Compliance at the IdP level acts as a major roadblock (though bypasses are eventually found here).
-- **Training is Insufficient**: Between the URL masker hiding the true domain and the visual fidelity being a perfect live match of the real site, we have to be realistic. Even well-trained experts can slip. We need technical controls that do not rely on human perception.
+- **Training is Insufficient**: Between the URL masker hiding the true domain, a legitimately-issued certificate on that domain, and visual fidelity that's a perfect live match of the real site, we have to be realistic. Even well-trained experts can slip. We need technical controls that do not rely on human perception.
 
 ---
 # TITLE: The Homograph Mirage: Why Hovering Over Links is Bad Security Advice
