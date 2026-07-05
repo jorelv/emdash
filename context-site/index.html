@@ -1,4 +1,17 @@
-<html><body><pre># Site Context: Jorel's Blog
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jorel's Blog - Full Site Context</title>
+  <meta name="description" content="Complete site context for Jorel's Blog including all posts and about page. Optimized for LLM ingestion.">
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #1e293b; }
+    pre { white-space: pre-wrap; word-wrap: break-word; font-family: inherit; font-size: 1rem; }
+  </style>
+</head>
+<body>
+<pre># Site Context: Jorel's Blog
 
 This document consolidates Jorel's profile and all published posts into a single text format. It is optimized to be read by Large Language Models (LLMs) like Gemini, ChatGPT, and Claude to facilitate search, questions, and discussion.
 
@@ -69,13 +82,13 @@ Phishing-Resistant MFA for your Entra ID admins is the right move. But if that i
 - ​**Grant:** Require Authentication strength → Custom Authentication Strength (Phishing-resistant methods + Temporary Access Pass).
 - ​**Session:** Set **Sign-in frequency** to Every time.
 
-> ​**Note:** Forcing "Every time" on the security registration portal triggers a fresh, mandatory MFA challenge even if an attacker attempts to access the portal using a hijacked session cookie.
+&gt; ​**Note:** Forcing "Every time" on the security registration portal triggers a fresh, mandatory MFA challenge even if an attacker attempts to access the portal using a hijacked session cookie.
 
-### ​3. Enforce Device Compliance & Block Unsupported Platforms
+### ​3. Enforce Device Compliance &amp; Block Unsupported Platforms
 
 ​Privileged Access Workstations (PAWs) are the standard, but at a minimum, you must require a compliant device and explicitly block everything else. If you only target Windows/macOS for compliance, an attacker can bypass the check entirely by spoofing a Linux user agent. You need two distinct CAPs here:
 
-**​CAP A (Require Compliance & Entra-Joined)**
+**​CAP A (Require Compliance &amp; Entra-Joined)**
 
 - ​**Conditions:** Device platforms → Include Windows and macOS.
 - ​**Grant:** Require device to be marked as compliant **AND** Require Entra-Joined device.
@@ -107,11 +120,11 @@ Phishing-Resistant MFA for your Entra ID admins is the right move. But if that i
 - ​**Session:** Require token protection for sign-in sessions.
 - ​**The Caveat:** This primarily protects native thick clients and specific Microsoft Edge configurations linked to the Primary Refresh Token (PRT). It leaves standard browser web sessions (like Chrome or Firefox) exposed. Because your admins operate heavily in web portals, aggressive Sign-in Frequency (the policy above) remains your primary defense for web sessions.
 
-## ​Tenant Hardening & Administrative Controls
+## ​Tenant Hardening &amp; Administrative Controls
 
 ​Beyond your CAPs, you must harden your core tenant configuration against social engineering and administrative bypasses:
 
-### ​Protect the Architecture & Stop Helpdesk Phishing
+### ​Protect the Architecture &amp; Stop Helpdesk Phishing
 
 ​Place your target admin groups inside a **Restricted Management Administrative Unit (AU)** and use **Role-assignable groups**. This prevents standard administrators or compromised helpdesk accounts from modifying your CAP configurations, changing group memberships, resetting passwords, changing MFA methods, or generating TAPs for Tier 0 accounts.
 
@@ -204,7 +217,7 @@ The Register recently confirmed what most of us already knew: LLMs are terrible 
 
 **​The "Looks Strong" Trap**
 
-​During recent research, a generated string like G7$kL9#mQ2&xP4!w was tested. While standard strength tools like zxcvbn estimate it would take "centuries" to crack based on simple length and character-class heuristics, its tokenized origin dramatically narrows the real search space for offline brute-forcing tools.
+​During recent research, a generated string like G7$kL9#mQ2&amp;xP4!w was tested. While standard strength tools like zxcvbn estimate it would take "centuries" to crack based on simple length and character-class heuristics, its tokenized origin dramatically narrows the real search space for offline brute-forcing tools.
 
 ### ​Delegating the Entropy
 
@@ -224,7 +237,7 @@ The Register recently confirmed what most of us already knew: LLMs are terrible 
 
 ​But even when they do, the baseline rule remains: **you shouldn't trust an LLM to generate your secure passwords or secrets.** People will undoubtedly continue to ask for them anyway, but the right approach hasn't changed.
 
-> ​**Use them to write the code (and human-validate it), not the password**
+&gt; ​**Use them to write the code (and human-validate it), not the password**
 
 
 
@@ -411,7 +424,7 @@ To reclaim your device's performance, prioritize these two actions immediately:
 
 ### 1. Stop the Scrape (Disable ACR)
 
-Go to your TV's **Settings > Privacy** (often hidden under options like _"Viewing Data"_, _"Viewing Information Services"_, or _"Smart Interactivity"_) and disable ACR. 
+Go to your TV's **Settings &gt; Privacy** (often hidden under options like _"Viewing Data"_, _"Viewing Information Services"_, or _"Smart Interactivity"_) and disable ACR. 
 
 This stops the background service from taking screenshots, analyzing display frame buffers, and negotiating network handshakes while you watch.
 
@@ -430,4 +443,6 @@ Privacy is abstract, but menu lag is reality. Fix the settings to fix the lag.
 
 ---
 
-*End of Document. Generated dynamically on Jorel's Blog.*</pre></body></html>
+*End of Document. Generated dynamically on Jorel's Blog.*</pre>
+</body>
+</html>
