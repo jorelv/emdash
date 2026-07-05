@@ -1,7 +1,7 @@
 # Jorel's Blog — Complete Site Context
 # Generated dynamically. All published posts and pages.
 # Total articles: 8
-# Last updated: 2026-07-05T15:05:41.716Z
+# Last updated: 2026-07-05T16:55:56.706Z
 
 ---
 # TITLE: About
@@ -202,65 +202,60 @@ But even when they do, the baseline rule remains: **you shouldn't trust an LLM t
 > **Use them to write the code (and human-validate it), not the password**
 
 ---
-# TITLE: The Pirate Author and the AI Coworker: Hugh Howey's Frictionless Future
+# TITLE: 'Silo' Author Hugh Howey Was Pro-Piracy, Predicted AI Collaboration in 2016, and Ended Up in Anthropic's Copyright Settlement
 ## Date: 2026-02-11
-## Excerpt: Years before ChatGPT, sci-fi author Hugh Howey (Silo/Wool) predicted the rise of the AI coworker, welcoming it as a creative augment rather than a threat. By embracing piracy and pricing for accessibility, Howey proved that friction is the true enemy of progress. Here is what technologists can learn from a writer who valued output over process.  
+## Excerpt: Long before ChatGPT, Silo author Hugh Howey predicted writers would collaborate with AI as creative partners. He'd already built a career on similar bets: welcoming piracy over obscurity, pricing ebooks at $0.99 against industry norms. Now his work is part of Anthropic's $1.5 billion copyright settlement. A look at whether that's a reversal, or the same principle he's held all along. 
 
-One of the most compelling predictions about AI didn't come from a technologist. It came from an author who once put a **"Pro-Piracy"** button on his website.
+I’ve read Hugh Howey since before Wool had a Simon & Schuster logo on the spine. I watched him put a "Pro-Piracy" button on his own website while publishers were suing teenagers over Napster. I watched him price ebooks at $0.99 while the industry called it reckless. I watched him predict, in 2016, that writers would one day sit down with a writing program and co-author a book with it, and then watched that prediction land almost exactly on schedule.
 
-Years before ChatGPT, science fiction author **Hugh Howey** (_Silo_/_Wool_) imagined sitting down with a writing partner that wasn't human. In 2016 he described a future where writers and AI would iterate together—drafting, revising, and refining ideas in ways neither could achieve alone.
+So when Howey's books ended up part of a $1.5 billion copyright settlement with Anthropic, it's worth asking how that squares with a guy who has spent fifteen years telling creators to stop fighting technological disruption. On the surface those two things look like they pull in opposite directions. Worth actually working through rather than leaving unresolved.
+
+I don't think they pull in opposite directions at all. I think the two ideas can live together comfortably once you look at what his principle actually was the whole time, starting with that piracy stance most people have never heard of.
+
+## A Detail Most People Don't Know About Him
+
+Most readers have never heard about the "Pro-Piracy" button Howey once put on his own website. It's an obscure footnote from early in his career, not something that made headlines, which is probably why it's easy to misread if it comes up at all. So it's worth being precise about what it actually meant, because the nuance matters for everything that follows.
+
+Howey was never defending piracy in general. He was defending a reader downloading a free copy for personal use, not a bootlegger selling pirated files for profit. Those are not the same act wearing different clothes. One is a person who wasn't going to pay full price anyway, getting exposed to a book, maybe becoming a fan, maybe buying the next one. The other is someone building a commercial operation on the back of a stranger's unpaid labor.
+
+Howey's actual bet was that the first kind of piracy was a rounding error next to obscurity, and that fighting it with DRM and lawsuits punished legitimate readers far more than it stopped anyone determined to steal. But he was never on record saying it's fine for someone to run a storefront selling his books without paying him. That's not a friction he ever asked to have removed. That's the exact thing the Anthropic settlement was about: a company building a commercial product on his and thousands of other authors' pirated work.
+
+## Same Logic, Applied to Pricing
+
+The $0.99 ebook fight fits the same shape. Howey's argument wasn't "books should be free." It was that publishers were protecting an artificial price floor that served their margins more than it served either readers or authors. He still got paid. Readers still paid. The friction he attacked was the markup, not the transaction. Nobody was extracting value from his work without compensating him. The disagreement was purely about how much friction should sit between a reader's interest and a completed sale.
+
+## The Centaur Prediction, Reread
+
+In 2016, Howey made the following prediction:
 
 > One day, I will sit down with my writing program, give the barest of prompts, and the computer will spit out rough prose for me to revise... Or I will write, ask for a prompt, and get a suggestion in return. We will co-author the work. Neither of us could have written the final piece alone.
 
-He called it the "Centaur" stage: human and machine, collaborating.
+Notice what's not in that picture: a company selling access to a model that had silently ingested his backlist without permission or payment, then charging users a subscription to produce competing fiction. The Centaur was always framed as a personal tool a writer chooses to use, not a commercial product built on uncompensated raw material. He predicted the collaboration. He didn't predict, or endorse, the acquisition method.
 
-This wasn't a sudden change in perspective. It was the continuation of a philosophy he'd already been living for years.
+## So What's the Actual Principle?
 
-## Optimize for the Work, Not the Workflow
+Line them up and a pattern holds across all three positions, cleanly, with no revision required.
 
-Howey has consistently challenged the assumption that creators should defend every step of the traditional creative process. Instead, he asks a different question:
+- Personal, non-commercial use of someone's work is fine, even worth encouraging, because the harm is negligible and the goodwill is real.
+- Commercial exploitation of someone's work without paying them is not fine, whether it's a bootlegger, a publisher protecting an inflated price floor at the reader's expense, or a company selling access to a model trained on unlicensed prose.
 
-**What gets in the way of people creating, sharing, and enjoying great work?**
+That's one rule, not two. The common thread is opposition to unpaid commercial extraction, wherever it shows up. A bootlegger selling pirated files, a publisher protecting an inflated price floor at the reader's expense, a company selling access to a model trained on unlicensed prose. Different eras, different technologies, same target. He just never got asked, until now, to weigh in on a version of it aimed at him.
 
-That question shaped his publishing decisions long before AI entered the conversation.
+Read this way, the settlement isn't Howey abandoning his principles under pressure from personal interest. It's the same rule he's applied since 2011, reaching a new category of actor he hadn't previously had reason to think about.
 
-- **He welcomed piracy instead of fearing it.** Rather than treating every unauthorized download as a lost sale, he saw obscurity as the greater threat. He believed convenience, accessibility, and goodwill were more powerful than DRM and enforcement. His goal wasn't to punish pirates—it was to make buying easier than pirating.
-- **He priced for readers, not the industry.** When publishers viewed $0.99 ebooks as reckless, Howey saw it as removing another barrier between stories and readers. The objective wasn't maximizing the price of a book; it was maximizing the reach of an idea.
-- **He embraced AI as a creative partner.** In 2016, he predicted that writers would soon collaborate with intelligent software that could generate drafts, offer suggestions, and help refine prose. The author would remain essential, but the act of writing would become more fluid, more iterative, and less constrained by the mechanics of producing a first draft.
+The settlement itself actually drew a version of this same line. The court ruled that training Claude on legally acquired books was fair use and transformative, but that Anthropic downloading pirated copies from shadow libraries like LibGen to get some of that training data was not fair use, which is what the $1.5 billion payout covers. The distinction the court landed on wasn't training versus output. It was legitimate acquisition versus piracy. That's not exactly Howey's line, and it's not exactly mine either, but it confirms this isn't an all-or-nothing debate. There are several defensible places to draw it, and reasonable people, including judges, land in different spots.
 
-These aren't separate opinions. They're expressions of the same principle.
+## Where I Actually Disagree With Him
 
-## Friction Is the Real Competitor
+Here's where I part ways, not on the principle, but on how it applies to model training specifically.
 
-Howey's work suggests that the biggest obstacle to creativity isn't new technology. It's unnecessary friction.
+I think ingestion is fair use. Training a model on publicly available text is a transformative, non-expressive act, closer to an art student walking through a gallery to absorb style and technique than to a bootlegger photocopying a book to resell. The model isn't storing or redistributing a copy of Wool. It's extracting statistical patterns about how sentences work, the same way any reader does just by reading widely, except at a scale no individual reader could manage. Blocking that phase of machine learning doesn't just slow down a few companies. It breaks the basic mechanism by which the technology works at all.
 
-Piracy challenged the friction of distribution.
+Where I think copyright enforcement should actually bite is at the output. If a model reproduces a verbatim or substantially similar passage of a protected work, that's the violation, and it's the same violation whether a human or a machine produced it. The finish line is where the harm becomes concrete. Everything upstream of that is a process, not a product.
 
-Self-publishing challenged the friction of gatekeepers.
+Howey's position, as best I can tell, draws the line earlier, treating the act of training itself as the commercial exploitation, regardless of what the model later outputs, because the company is selling access to something whose capability was built from unlicensed material. Under his read, the art student analogy breaks down the moment the student starts charging tuition based on what they learned in a gallery they never paid to enter.
 
-Low-cost ebooks challenged the friction of pricing.
-
-AI challenges the friction of creation itself.
-
-In each case, the technology matters less than the barriers it removes.
-
-## The Lesson for AI
-
-Much of today's AI debate asks whether machines will replace people.
-
-Howey asked a different question years earlier:
-
-**What if the best work comes from reducing the distance between an idea and its realization?**
-
-That's a fundamentally different lens.
-
-Instead of defending old workflows, optimize for better outcomes.
-
-Instead of protecting every step of the process, empower more people to produce exceptional work.
-
-The revolution isn't AI.
-
-The revolution is what happens when friction stops being the limiting factor.
+I don't think that framing survives contact with how learning, human or machine, actually works. But I'll say this for him. It's not a contradiction of anything he's argued before. It's the same rule he's held since the Pro-Piracy button, aimed for the first time at a target he didn't see coming when he wrote it. The interesting question was never whether Howey changed his mind. It's whether training a model is closer to reading, or closer to reselling.
 
 ---
 # TITLE: Claiming Your Digital Seats: Accounts To Occupy
