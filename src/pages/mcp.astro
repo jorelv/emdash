@@ -14,11 +14,20 @@ const mcpEndpointUrl = `${Astro.url.origin}/mcp`;
 			<p class="subtitle">
 				Query this blog directly from your local LLM client using our public, read-only MCP server. No API keys required.
 			</p>
-			<div class="endpoint-box">
-				<span class="label">Server Endpoint (SSE)</span>
-				<div class="url-input-group">
-					<input type="text" readonly value={mcpEndpointUrl} id="mcp-url" />
-					<button onclick="copyMcpUrl()" id="copy-btn">Copy</button>
+			<div class="endpoint-boxes">
+				<div class="endpoint-box">
+					<span class="label">Server Endpoint (SSE)</span>
+					<div class="url-input-group">
+						<input type="text" readonly value={mcpEndpointUrl} id="mcp-url" />
+						<button onclick="copyMcpUrl()" id="copy-btn">Copy</button>
+					</div>
+				</div>
+				<div class="endpoint-box">
+					<span class="label">LLM Context File (Markdown)</span>
+					<div class="url-input-group">
+						<input type="text" readonly value="https://raw.githubusercontent.com/jorelv/emdash/main/context.md" id="context-url" />
+						<button onclick="copyContextUrl()" id="copy-context-btn">Copy</button>
+					</div>
 				</div>
 			</div>
 		</header>
@@ -121,6 +130,19 @@ const mcpEndpointUrl = `${Astro.url.origin}/mcp`;
 			});
 		}
 
+		function copyContextUrl() {
+			const urlInput = document.getElementById("context-url");
+			const btn = document.getElementById("copy-context-btn");
+			if (!urlInput || !btn) return;
+			
+			navigator.clipboard.writeText(urlInput.value).then(() => {
+				btn.textContent = "Copied!";
+				setTimeout(() => btn.textContent = "Copy", 2000);
+			}).catch(err => {
+				console.error("Failed to copy URL:", err);
+			});
+		}
+
 		function switchTab(tabId) {
 			// Update button styles
 			const buttons = document.querySelectorAll(".tab-btn");
@@ -167,13 +189,18 @@ const mcpEndpointUrl = `${Astro.url.origin}/mcp`;
 			margin: 0 auto 2rem auto;
 			line-height: 1.6;
 		}
+		.endpoint-boxes {
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+			max-width: 600px;
+			margin: 0 auto;
+		}
 		.endpoint-box {
 			background-color: var(--color-bg-subtle, #f8fafc);
 			border: 1px solid var(--color-border, #e2e8f0);
 			border-radius: 12px;
 			padding: 1.25rem;
-			max-width: 600px;
-			margin: 0 auto;
 			text-align: left;
 		}
 		.endpoint-box .label {
