@@ -17,28 +17,44 @@ jobs:
 
       - name: Fetch Live Context
         run: |
-          curl -s -o context.md https://emdash.jorelv.workers.dev/context.md
+          curl -s -o llms-full.txt https://emdash.jorelv.workers.dev/llms-full.txt
 
       - name: Commit and Push Changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add context.md
+          git add llms-full.txt
           if git diff --staged --quiet; then
-            echo "No changes in context.md"
+            echo "No changes in llms-full.txt"
           else
-            git commit -m "chore: update live LLM context.md"
+            git commit -m "chore: update live LLM context llms-full.txt"
             git push
           fi
 
       - name: Deploy to Cloudflare Pages
         run: |
           mkdir -p deploy-dir
-          cp context.md deploy-dir/context.md
-          cat > deploy-dir/index.html << 'HEREDOC'
+          cp llms-full.txt deploy-dir/llms-full.txt
+          # Escape & < > for basic HTML wrapping
+          escaped=$(sed -e 's/&/\&amp;/g' -e 's/</\&lt;/g' -e 's/>/\&gt;/g' llms-full.txt)
+          cat > deploy-dir/index.html << HEREDOC
           <!DOCTYPE html>
-          <html><head><meta charset="utf-8"><title>LLM Context</title></head>
-          <body><p>Access the full site context at <a href="/context.md">/context.md</a></p></body></html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Jorel's Blog - Full Site Context (llms-full.txt)</title>
+            <style>
+              body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #1e293b; }
+              pre { white-space: pre-wrap; word-wrap: break-word; font-family: inherit; font-size: 1rem; }
+            </style>
+          </head>
+          <body>
+          <p>This page serves the raw LLM context file. You can access the raw text file directly at <a href="/llms-full.txt">/llms-full.txt</a>.</p>
+          <hr>
+          <pre>${escaped}</pre>
+          </body>
+          </html>
           HEREDOC
           npx wrangler pages deploy deploy-dir --project-name jorelv-context --branch main
         env:
