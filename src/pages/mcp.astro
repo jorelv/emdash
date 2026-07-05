@@ -1,0 +1,308 @@
+---
+import Base from "../layouts/Base.astro";
+import { getSiteSettings } from "emdash";
+import { resolveBlogSiteIdentity } from "../utils/site-identity";
+
+const { siteTitle } = resolveBlogSiteIdentity(await getSiteSettings());
+const mcpEndpointUrl = `${Astro.url.origin}/mcp`;
+---
+
+<Base title={`MCP Server Instructions — ${siteTitle}`}>
+	<div class="mcp-container">
+		<header class="mcp-header">
+			<h1>Model Context Protocol (MCP) Gateway</h1>
+			<p class="subtitle">
+				Query this blog directly from your local LLM client using our public, read-only MCP server. No API keys required.
+			</p>
+			<div class="endpoint-box">
+				<span class="label">Server Endpoint (SSE)</span>
+				<div class="url-input-group">
+					<input type="text" readonly value={mcpEndpointUrl} id="mcp-url" />
+					<button onclick="copyMcpUrl()" id="copy-btn">Copy</button>
+				</div>
+			</div>
+		</header>
+
+		<div class="mcp-tabs">
+			<button class="tab-btn active" onclick="switchTab('claude')">Claude Desktop</button>
+			<button class="tab-btn" onclick="switchTab('cursor')">Cursor</button>
+			<button class="tab-btn" onclick="switchTab('windsurf')">Windsurf</button>
+			<button class="tab-btn" onclick="switchTab('cline')">Cline / Roo</button>
+		</div>
+
+		<div class="tab-content" id="content-claude">
+			<h2>Claude Desktop Setup</h2>
+			<p>To use this blog as a tool in Claude Desktop, add the following configuration to your <code>claude_desktop_config.json</code> file:</p>
+			<pre><code>{`{
+  "mcpServers": {
+    "jorels-blog": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/client-sse",
+        "${mcpEndpointUrl}"
+      ]
+    }
+  }
+}`}</code></pre>
+			<p class="file-path">File Locations:</p>
+			<ul>
+				<li><strong>macOS:</strong> <code>~/Library/Application Support/Claude/claude_desktop_config.json</code></li>
+				<li><strong>Windows:</strong> <code>%APPDATA%\\Claude\\claude_desktop_config.json</code></li>
+			</ul>
+		</div>
+
+		<div class="tab-content hidden" id="content-cursor">
+			<h2>Cursor Setup</h2>
+			<p>To add this blog to Cursor as an MCP tool:</p>
+			<ol>
+				<li>Open Cursor and navigate to <strong>Settings</strong> (gear icon in the top right) or press <code>Cmd/Ctrl + Shift + Y</code>.</li>
+				<li>Go to <strong>Models</strong> &gt; <strong>MCP</strong>.</li>
+				<li>Click <strong>+ Add New MCP Server</strong>.</li>
+				<li>Configure the server with:
+					<ul>
+						<li><strong>Name:</strong> <code>jorels-blog</code></li>
+						<li><strong>Type:</strong> <code>sse</code></li>
+						<li><strong>URL:</strong> <code class="url-text">{mcpEndpointUrl}</code></li>
+					</ul>
+				</li>
+				<li>Click <strong>Save</strong>. The status indicator should turn green.</li>
+			</ol>
+		</div>
+
+		<div class="tab-content hidden" id="content-windsurf">
+			<h2>Windsurf Setup</h2>
+			<p>To add this blog to Windsurf as an MCP tool:</p>
+			<ol>
+				<li>Open Windsurf and go to <strong>Settings</strong>.</li>
+				<li>Navigate to the <strong>Advanced</strong> tab &gt; <strong>MCP Configuration</strong>.</li>
+				<li>Click <strong>Add New Server</strong>.</li>
+				<li>Enter the following details:
+					<ul>
+						<li><strong>Name:</strong> <code>jorels-blog</code></li>
+						<li><strong>Type:</strong> <code>sse</code></li>
+						<li><strong>URL:</strong> <code class="url-text">{mcpEndpointUrl}</code></li>
+					</ul>
+				</li>
+				<li>Save and restart the AI agent if needed.</li>
+			</ol>
+		</div>
+
+		<div class="tab-content hidden" id="content-cline">
+			<h2>Cline / Roo Code Setup</h2>
+			<p>To add this blog to Cline or Roo Code inside VS Code:</p>
+			<p>Add this snippet to your custom MCP configuration file (typically managed by the extension settings page or found in <code>cline_mcp_settings.json</code>):</p>
+			<pre><code>{`{
+  "mcpServers": {
+    "jorels-blog": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/client-sse",
+        "${mcpEndpointUrl}"
+      ]
+    }
+  }
+}`}</code></pre>
+		</div>
+	</div>
+
+	<script is:inline>
+		function copyMcpUrl() {
+			const urlInput = document.getElementById("mcp-url");
+			const btn = document.getElementById("copy-btn");
+			if (!urlInput || !btn) return;
+			
+			navigator.clipboard.writeText(urlInput.value).then(() => {
+				btn.textContent = "Copied!";
+				setTimeout(() => btn.textContent = "Copy", 2000);
+			}).catch(err => {
+				console.error("Failed to copy URL:", err);
+			});
+		}
+
+		function switchTab(tabId) {
+			// Update button styles
+			const buttons = document.querySelectorAll(".tab-btn");
+			buttons.forEach(btn => {
+				if (btn.getAttribute("onclick").includes(tabId)) {
+					btn.classList.add("active");
+				} else {
+					btn.classList.remove("active");
+				}
+			});
+
+			// Show/hide content panels
+			const contents = document.querySelectorAll(".tab-content");
+			contents.forEach(content => {
+				if (content.id === "content-" + tabId) {
+					content.classList.remove("hidden");
+				} else {
+					content.classList.add("hidden");
+				}
+			});
+		}
+	</script>
+
+	<style>
+		.mcp-container {
+			max-width: 800px;
+			margin: 4rem auto;
+			padding: 0 1.5rem;
+		}
+		.mcp-header {
+			text-align: center;
+			margin-bottom: 3rem;
+		}
+		.mcp-header h1 {
+			font-size: 2.25rem;
+			font-weight: 700;
+			letter-spacing: -0.02em;
+			margin-bottom: 1rem;
+		}
+		.mcp-header .subtitle {
+			font-size: 1.1rem;
+			color: var(--color-text-secondary, #64748b);
+			max-width: 600px;
+			margin: 0 auto 2rem auto;
+			line-height: 1.6;
+		}
+		.endpoint-box {
+			background-color: var(--color-bg-subtle, #f8fafc);
+			border: 1px solid var(--color-border, #e2e8f0);
+			border-radius: 12px;
+			padding: 1.25rem;
+			max-width: 600px;
+			margin: 0 auto;
+			text-align: left;
+		}
+		.endpoint-box .label {
+			display: block;
+			font-size: 0.75rem;
+			font-weight: 600;
+			text-transform: uppercase;
+			color: var(--color-text-secondary, #64748b);
+			margin-bottom: 0.5rem;
+			letter-spacing: 0.05em;
+		}
+		.url-input-group {
+			display: flex;
+			gap: 0.75rem;
+		}
+		.url-input-group input {
+			flex: 1;
+			background-color: var(--color-bg, white);
+			border: 1px solid var(--color-border, #e2e8f0);
+			border-radius: 8px;
+			padding: 0.6rem 0.8rem;
+			font-family: var(--font-mono, monospace);
+			font-size: 0.9rem;
+			color: var(--color-text, #1e293b);
+		}
+		.url-input-group button {
+			background-color: var(--color-accent, #0066cc);
+			color: var(--color-on-accent, white);
+			border: none;
+			border-radius: 8px;
+			padding: 0 1.25rem;
+			font-weight: 500;
+			cursor: pointer;
+			transition: background-color 0.2s;
+		}
+		.url-input-group button:hover {
+			background-color: var(--color-accent-hover, #0052a3);
+		}
+		
+		.mcp-tabs {
+			display: flex;
+			border-bottom: 1px solid var(--color-border, #e2e8f0);
+			margin-bottom: 2rem;
+			gap: 1rem;
+		}
+		.tab-btn {
+			background: none;
+			border: none;
+			border-bottom: 2px solid transparent;
+			padding: 0.75rem 0.5rem;
+			font-size: 1rem;
+			font-weight: 500;
+			color: var(--color-text-secondary, #64748b);
+			cursor: pointer;
+			transition: all 0.2s;
+		}
+		.tab-btn:hover {
+			color: var(--color-text, #1e293b);
+		}
+		.tab-btn.active {
+			color: var(--color-accent, #0066cc);
+			border-bottom-color: var(--color-accent, #0066cc);
+		}
+
+		.tab-content {
+			animation: fadeIn 0.3s ease-in-out;
+		}
+		.tab-content.hidden {
+			display: none;
+		}
+		.tab-content h2 {
+			font-size: 1.5rem;
+			font-weight: 600;
+			margin-bottom: 1rem;
+		}
+		.tab-content p {
+			line-height: 1.6;
+			color: var(--color-text, #1e293b);
+			margin-bottom: 1.25rem;
+		}
+		.tab-content ol, .tab-content ul {
+			margin-bottom: 1.5rem;
+			padding-left: 1.5rem;
+		}
+		.tab-content li {
+			margin-bottom: 0.5rem;
+			line-height: 1.6;
+		}
+		
+		pre {
+			background-color: var(--color-bg-subtle, #f8fafc);
+			border: 1px solid var(--color-border, #e2e8f0);
+			border-radius: 8px;
+			padding: 1.25rem;
+			overflow-x: auto;
+			margin-bottom: 1.5rem;
+		}
+		code {
+			font-family: var(--font-mono, monospace);
+			font-size: 0.9rem;
+		}
+		.url-text {
+			background-color: var(--color-bg-subtle, #f8fafc);
+			padding: 0.2rem 0.4rem;
+			border-radius: 4px;
+			border: 1px solid var(--color-border-subtle, #e2e8f0);
+		}
+		.file-path {
+			font-weight: 600;
+			margin-bottom: 0.5rem !important;
+		}
+
+		@keyframes fadeIn {
+			from { opacity: 0; transform: translateY(4px); }
+			to { opacity: 1; transform: translateY(0); }
+		}
+
+		@media (max-width: 600px) {
+			.url-input-group {
+				flex-direction: column;
+			}
+			.url-input-group button {
+				padding: 0.75rem 0;
+			}
+			.mcp-tabs {
+				overflow-x: auto;
+				white-space: nowrap;
+				gap: 0.5rem;
+			}
+		}
+	</style>
+</Base>

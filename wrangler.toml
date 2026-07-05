@@ -1,0 +1,29 @@
+name = "emdash"
+main = "./src/worker.ts"
+compatibility_date = "2026-02-24"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+MAILGUN_DOMAIN = "sandbox631c41a9782249229c2570431fb9f48f.mailgun.org"
+MAILGUN_FROM = "Jorel <postmaster@sandbox631c41a9782249229c2570431fb9f48f.mailgun.org>"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "my-emdash-site"
+database_id = "2df87cee-af5e-4b65-add4-15d3ad6821f0"
+
+[[kv_namespaces]]
+binding = "SESSION"
+id = "0bb54ca09c2041c4a0589affc25f0b08"
+
+[images]
+binding = "IMAGES"
+
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "my-emdash-media"
+
