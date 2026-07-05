@@ -477,7 +477,7 @@ const publishDate =
 						if (!contentEl) return;
 						const title = titleEl ? titleEl.textContent.trim() : "";
 						const markdown = getMarkdownFromElement(contentEl);
-						const systemPrompt = "Analyze this note by Jorel and prepare to discuss it with me:\n\n";
+						const systemPrompt = "Please review this note by Jorel for context, and let me know when you're ready to discuss the ideas in it:\n\n";
 						const fullText = systemPrompt + (title ? "# " + title + "\n\n" : "") + markdown;
 						
 						const fitsInUrl = encodeURIComponent(fullText).length < 4000;
