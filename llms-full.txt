@@ -1,7 +1,7 @@
 # Jorel's Blog — Complete Site Context
 # Generated dynamically. All published posts and pages.
 # Total articles: 8
-# Last updated: 2026-08-17T11:16:40.363Z
+# Last updated: 2026-08-17T12:22:27.586Z
 
 ---
 # TITLE: About
